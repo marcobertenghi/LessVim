@@ -1,0 +1,14 @@
+-- Extends the ruff config shipped with nvim-lspconfig.
+-- Per-project rules belong in the project's pyproject.toml or ruff.toml.
+--
+-- To pass editor-level settings, uncomment and fill in (an *empty* settings
+-- table breaks: Lua serializes {} as a JSON array, which ruff rejects):
+--
+-- return {
+--   init_options = {
+--     settings = {
+--       lineLength = 100,
+--     },
+--   },
+-- }
+return {}

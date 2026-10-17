@@ -1,0 +1,9 @@
+# Local Neovim output and state
+*.log
+*.swp
+*.swo
+Session.vim
+Sessionx.vim
+
+# macOS metadata
+.DS_Store
