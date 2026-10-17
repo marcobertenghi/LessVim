@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'markdown',
   callback = function(args)
     local opts = { buffer = args.buf }
-    map('i', '<CR>', '<CR><cmd>AutolistNewBullet<cr>', opts)
+    map('i', '<CR>', '<CR><cmd>lua require("plugins.markdown").new_bullet()<CR>', opts)
     map('i', '<tab>', '<cmd>AutolistTab<cr>', opts)
     map('i', '<s-tab>', '<cmd>AutolistShiftTab<cr>', opts)
   end,

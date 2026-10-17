@@ -208,6 +208,12 @@ Use quickfix as a queue of search matches to inspect:
 Quickfix is a navigation list, not a persistent findings tracker. These
 shortcuts use built-in Neovim features and the existing Telescope plugin.
 
+In Markdown, Enter after ordinary text ending in `:` starts a bullet at the
+same indentation as that text (e.g. `Notes:` followed by `- item`). Enter
+after a list item ending in `:` starts a nested list. Tab / Shift-Tab control
+list nesting, and fenced code blocks retain their normal newline behaviour.
+Python's four-space indentation after a block-opening colon is independent.
+
 Treesitter highlights TOML, INI, XML, HCL/Terraform, Dockerfiles, and Nginx
 configuration, in addition to the existing Python, Bash, YAML, JSON, Lua,
 JavaScript, HTML, and Markdown support. XML also installs its DTD parser dependency.
