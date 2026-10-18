@@ -30,7 +30,7 @@ vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',                          -- telescope dependency
   'https://github.com/nvim-telescope/telescope.nvim',                  -- fuzzy finder
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' }, -- syntax highlighting
-  'https://github.com/MeanderingProgrammer/render-markdown.nvim',     -- pretty markdown
+  { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim', version = vim.version.range('^8.14.0') }, -- markdown + wrapping tables
   'https://github.com/nvim-mini/mini.pairs',                           -- auto-close brackets
   'https://github.com/gaoDean/autolist.nvim',                          -- markdown list continuation
   'https://github.com/neovim/nvim-lspconfig',                          -- LSP server definitions

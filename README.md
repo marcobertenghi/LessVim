@@ -165,6 +165,26 @@ Commit `nvim-pack-lock.json` alongside the configuration to reproduce plugin
 revisions. Plugins, compiled parsers, and editor state live in Neovim's data,
 cache, and state directories; they do not belong in this repository.
 
+### Wide Markdown tables
+
+render-markdown tracks stable v8 releases starting at 8.14.0, which adds
+automatic wrapping of table cells to fit the current window. The default
+`pipe_table.wrap = true` is used; no extra plugin or wrapping callback is needed.
+Tables should have consistent columns and outer `|` characters on each row.
+The default rendered conceal level of 3 supports this feature.
+
+To update only render-markdown after changing its version specification:
+
+1. Restart Neovim to load the specification in `init.lua`.
+2. Run `:lua vim.pack.update({ 'render-markdown.nvim' })`.
+3. Review the update buffer, then run `:write` to confirm the update.
+4. Restart Neovim and reopen a Markdown file. Resize the window to check a wide table.
+5. Commit the generated `nvim-pack-lock.json` change with the configuration.
+
+Wrapped tables require more rendering work than unwrapped tables. If a large
+table feels slow, `pipe_table = { wrap = false }` in `lua/plugins/markdown.lua`
+restores the previous rendering behaviour.
+
 ## Keymaps
 
 Leader is `<Space>`.
