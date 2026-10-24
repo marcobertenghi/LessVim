@@ -65,7 +65,7 @@ Install the base tools from Kali's repositories:
 
 ```sh
 sudo apt update
-sudo apt install neovim git ripgrep curl ca-certificates tar gzip unzip build-essential pipx python3-venv
+sudo apt install neovim git ripgrep curl ca-certificates tar gzip unzip build-essential
 ```
 
 Check the actual versions; Kali snapshots and rolling installations can differ:
@@ -89,21 +89,32 @@ extract it, and install the `tree-sitter` executable in `~/.local/bin`.
 Then check `tree-sitter --version`. A standalone release avoids installing a
 Rust toolchain just to build this utility.
 
-For Python tooling, use isolated user installations:
+For Python tooling, use uv's isolated tool installations. If uv is not already
+installed, install it once using the [official uv installer](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```sh
-pipx install basedpyright
-pipx install ruff
-pipx ensurepath
-export PATH="$HOME/.local/bin:$PATH"  # make user-installed tools available now
+curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH="$HOME/.local/bin:$PATH"  # make uv available in this shell
+```
+
+Then install the tools and ensure their executable directory is on `PATH`:
+
+```sh
+uv tool install basedpyright
+uv tool install ruff
+uv tool update-shell
 basedpyright --version
 ruff --version
 command -v basedpyright-langserver
 ```
 
-The [basedpyright PyPI distribution](https://docs.basedpyright.com/latest/installation/command-line-and-language-server/)
-provides the language-server executable. The [Ruff installation documentation](https://docs.astral.sh/ruff/installation/)
-also supports pipx. These tools are installed once per machine, not per project.
+If `uv tool update-shell` changes your shell configuration, open a new terminal
+before checking the tool commands. Each tool has its own persistent environment;
+these installations are available to Neovim across projects. Use `uv tool install`
+rather than `uv pip install` for this purpose. No separate pipx installation is needed.
+Both [basedpyright](https://docs.basedpyright.com/latest/installation/command-line-and-language-server/)
+and [Ruff](https://docs.astral.sh/ruff/installation/) recommend uv. To update them
+later, run `uv tool upgrade basedpyright` and `uv tool upgrade ruff`.
 
 Clone only the configuration and its lockfile between macOS and Kali. Let each
 machine install its own plugins and compile its own parsers; do not copy the
@@ -136,7 +147,7 @@ Clone this repository into Neovim's configuration directory. Replace
 `YOUR-USERNAME` with the GitHub owner once the repository is published:
 
 ```sh
-git clone https://github.com/YOUR-USERNAME/nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+git clone https://github.com/marcobertenghi/lessvim.git "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 ```
 
 If that destination already exists, move your current configuration to a
