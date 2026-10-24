@@ -143,8 +143,7 @@ or alternate Lua configuration is needed.
 
 ## Install on another machine
 
-Clone this repository into Neovim's configuration directory. Replace
-`YOUR-USERNAME` with the GitHub owner once the repository is published:
+Clone this repository into Neovim's configuration directory. 
 
 ```sh
 git clone https://github.com/marcobertenghi/lessvim.git "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
